@@ -1,15 +1,18 @@
+body {
+  overflow-y: hidden;
+}
 header {
-  padding: 45px 0;
+  padding: 20px 0;
   background-color: #477bff;
   font-family: "Press Start 2P", cursive;
   text-align: center;
   color: white;
 }
 .logo {
-  font-size: 62px;
+  font-size: 40px;
 }
 #game {
-  padding: 30px 25px;
+  padding: 20px 25px;
   background: #d9ceb4;
 }
 canvas {
@@ -21,7 +24,7 @@ footer {
   background-color: #f4f3f3;
   text-align: center;
   font-family: "Russo One", sans-serif;
-  padding: 15px 0;
+  padding: 13px 0;
 }
 .footer__text {
   color: #477bff;
@@ -32,6 +35,4 @@ footer {
   z-index: -9999;
   padding: 20px 20px;
 }
-iframe {
-  visibility: hidden;
-}
+
