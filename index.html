@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -29,6 +30,11 @@
           integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
           crossorigin="anonymous"
   ></script>
+  <script
+          src="https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"
+
+  ></script>
+
   <title>Flappy Ball</title>
 </head>
 <body>
@@ -60,11 +66,15 @@
   const title = $(".logo");
   title.hide();
   title.fadeIn(800);
-
   //game
   const canvas = document.getElementById("game__area");
   const ctx = canvas.getContext("2d");
-
+  function getTop() {
+    if(isNaN($.cookie('top'))) {
+      $.cookie ('top', '0')
+    }
+    return Number($.cookie('top'))
+  }
   const world = {
     // параметры мира
     height: canvas.offsetHeight,
@@ -74,7 +84,7 @@
     MaxSpeed: 7,
     score: 0,
     forceGravity: 0.35,
-    recordScore: 0,
+    recordScore:getTop(),
     gameProcess: false,
     draw() {
       ctx.fillStyle = "#99E0FF";
@@ -161,6 +171,7 @@
     ball.jump = 11;
     world.knock = false;
     world.recordScore = Math.max(world.score, world.recordScore);
+    $.cookie('top', `${Math.max(world.score, Number(getTop()))}`)
     world.score = 0;
     world.forceGravity = 0.35;
     tubes = [
@@ -231,15 +242,15 @@
         if (world.speed <= world.MaxSpeed) world.speed *= 1.075;
         ball.grav *= 1.01;
         world.score += 1;
-        world.recordScore = Math.max(world.score, world.recordScore);
+        world.recordScore = Math.max(world.score, Number(getTop()));
       }
       if (
-              tube.x - tube.width < ball.x - ball.width / 2.5 &&
-              tube.x + tube.width > ball.x
+              tube.x - tube.width < ball.x - ball.width / 2.5 - 8 &&
+              tube.x + tube.width > ball.x + 6
       ) {
         if (
-                tube.height > ball.y + ball.height / 2 - 8 ||
-                tube.height + tube.distBetweenTubes < ball.y + ball.height / 2 + 30
+                tube.height > ball.y + ball.height / 2 - 10  ||
+                tube.height + tube.distBetweenTubes < ball.y + ball.height / 2 + 25
         ) {
           StartText = "Game Over!";
           Stop();
@@ -277,6 +288,7 @@
       }
     }
   };
+
   const ftext = $(".footer__text");
   let date = new Date();
   ftext.text(`Created by Tikhomirov © ${date.getFullYear()}`);
