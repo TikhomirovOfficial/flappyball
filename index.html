@@ -102,7 +102,7 @@
     width: 60,
     grav: 1,
     draw: new Image(),
-    jump: 8,
+    jump: 10,
     flip() {
       this.grav -= this.jump;
     }
@@ -167,9 +167,9 @@
   }
   function Reset() {
     ball.y = 250;
-    ball.grav = 1;
-    world.speed = 1;
-    ball.jump = 11;
+    ball.grav = 2;
+    world.speed = 2;
+    ball.jump = 10;
     world.knock = false;
     world.recordScore = Math.max(world.score, world.recordScore);
     $.cookie('top', `${Math.max(world.score, Number(getTop()))}`)
