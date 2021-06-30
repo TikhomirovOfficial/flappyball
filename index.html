@@ -241,7 +241,7 @@
         tube.x = world.width; //после скрытия трубы, эта труба меняет свои координаты обратно
         tube.height = Math.random() * 400 + tube.distBetweenTubes; // рандомная высота труб
         if (world.speed <= world.MaxSpeed) world.speed *= 1.075;
-        ball.grav *= 1.01;
+//         ball.grav *= 1.01;
         world.score += 1;
         world.recordScore = Math.max(world.score, Number(getTop()));
       }
