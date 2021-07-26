@@ -104,7 +104,11 @@
     draw: new Image(),
     jump: 10,
     flip() {
-      this.y -= this.jump;
+      this.grav = 0;
+      world.forceGravity = 0;
+      this.grav -= this.jump;
+       this.grav = 1;
+      world.forceGravity = 0.35;
     }
   };
 
