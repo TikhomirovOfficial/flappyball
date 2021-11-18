@@ -262,12 +262,12 @@
         world.recordScore = Math.max(world.score, Number(getTop()));
       }
       if (
-              tube.x - tube.width < ball.x - ball.width / 2.5 - 8 &&
+              tube.x - tube.width < ball.x - ball.width / 2.5  &&
               tube.x + tube.width > ball.x + 6
       ) {
         if (
-                tube.height > ball.y + ball.height / 2 - 10  ||
-                tube.height + tube.distBetweenTubes < ball.y + ball.height / 2 + 25
+                tube.height > ball.y + ball.height / 2   ||
+                tube.height + tube.distBetweenTubes < ball.y + ball.height / 2 + 18
         ) {
           StartText = "Game Over!";
           Stop();
